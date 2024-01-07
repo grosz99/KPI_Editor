@@ -23,3 +23,14 @@ filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_
 # Step 2: Data Validation & Editing
 st.header("Validate values and you can change them if they are not right")
 st.data_editor(filtered_df)
+
+# Step 3: Chart Creator
+st.header("Chart Creator (Click On Fields To Create Charts)")
+fields = ["City", "State", "Region", "Sales", "Quantity", "Profit"]
+selected_field = st.selectbox("Select Field to Visualize", fields)
+
+if selected_field in ["City", "State", "Region"]:
+    chart_data = filtered_df.groupby(selected_field)["Sales"].sum()
+    st.bar_chart(chart_data)
+elif selected_field in ["Sales", "Quantity", "Profit"]:
+    st.line_chart(filtered_df[selected_field])
