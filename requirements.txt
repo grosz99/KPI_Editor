@@ -2,4 +2,3 @@ streamlit
 pandas
 numpy
 pygwalker
-streamlit.components.v1
