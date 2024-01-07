@@ -22,12 +22,4 @@ filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_
 
 # Step 2: Data Validation & Editing
 st.header("Validate values and you can change them if they are not right")
-if st.checkbox("Edit Data"):
-    # Example: Allow editing the 'Sales' for a specific city
-    cities = filtered_df['City'].unique()
-    selected_city = st.selectbox("Select City to Edit", cities)
-    city_data = filtered_df[filtered_df['City'] == selected_city]
-    
-    # Display data for the selected city
-    st.dataframe(city_data[['City', 'State', 'Region', 'Sales', 'Quantity', 'Profit']])
-    
+st.data_editor(filtered_df)
