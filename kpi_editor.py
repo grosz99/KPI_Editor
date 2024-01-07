@@ -15,6 +15,8 @@ data['Order Date'] = pd.to_datetime(data['Order Date'])
 st.sidebar.header("Filters")
 start_date = st.sidebar.date_input("Start Ship Date", data['Order Date'].min())
 end_date = st.sidebar.date_input("End Ship Date", data['Order Date'].max())
+start_date_np = np.datetime64(start_date)
+end_date_np = np.datetime64(end_date)
 filtered_df = data[(data['Order Date'] >= start_date) & (data['Order Date'] <= end_date)]
 
 # Step 2: Data Validation & Editing
