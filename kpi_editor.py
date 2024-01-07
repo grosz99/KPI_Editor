@@ -12,4 +12,22 @@ df['Order Date'] = pd.to_datetime(df['Order Date'])
 
 # Step 1: Filters
 st.sidebar.header("Filters")
+start_date = st.sidebar.date_input("Start Ship Date", df['Order Date'].min().date())
+end_date = st.sidebar.date_input("End Ship Date", df['Order Date'].max().date())
+# Convert the Streamlit dates to datetime64[ns] format
+start_date_np = np.datetime64(start_date)
+end_date_np = np.datetime64(end_date)
 
+filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_date_np)]
+
+# Step 2: Data Validation & Editing
+st.header("Validate values and you can change them if they are not right")
+if st.checkbox("Edit Data"):
+    # Example: Allow editing the 'Sales' for a specific city
+    cities = filtered_df['City'].unique()
+    selected_city = st.selectbox("Select City to Edit", cities)
+    city_data = filtered_df[filtered_df['City'] == selected_city]
+    
+    # Display data for the selected city
+    st.dataframe(city_data[['City', 'State', 'Region', 'Sales', 'Quantity', 'Profit']])
+    
