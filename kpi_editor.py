@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import pygwalker as pyg
+import streamlit.components.v1 as components
 
 
 
@@ -26,9 +28,8 @@ st.data_editor(filtered_df)
 
 # Step 3: Chart Creator
 st.header("Chart Creator")
-fields = ["City", "State", "Region", "Sales", "Quantity", "Profit"]
-x_axis = st.selectbox("Select X-Axis", fields)
-y_axis = st.selectbox("Select Y-Axis", ["Sales", "Quantity", "Profit"])
-
-chart_data = filtered_df.groupby(x_axis)[y_axis].sum()
-st.bar_chart(chart_data)
+# Generate the HTML using Pygwalker
+pyg_html = pyg.to_html(df)
+ 
+# Embed the HTML into the Streamlit app
+components.html(pyg_html, height=1000, scrolling=True)
