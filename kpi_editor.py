@@ -26,10 +26,4 @@ filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_
 st.header("Validate values and you can change them if they are not right")
 st.data_editor(filtered_df)
 
-# Step 3: Chart Creator
-st.header("Chart Creator")
-# Generate the HTML using Pygwalker
-pyg_html = pyg.to_html(df)
- 
-# Embed the HTML into the Streamlit app
-components.html(pyg_html, height=1000, scrolling=True)
+
