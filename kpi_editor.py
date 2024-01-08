@@ -4,7 +4,11 @@ import numpy as np
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
-
+# Adjust the width of the Streamlit page
+st.set_page_config(
+    page_title="Building Custom Presentations",
+    layout="wide"
+)
 
 # Load the dataset
 data_url = "https://raw.githubusercontent.com/grosz99/KPI_Editor/main/Sample_Superstore_Streamlit_Github.csv?token=GHSAT0AAAAAACMGXKXO3WEEIFUXUQZEMC5CZM3DKZQ"
