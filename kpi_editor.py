@@ -22,9 +22,6 @@ end_date_np = np.datetime64(end_date)
 
 filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_date_np)]
 
-st.set_page_config(
-    layout="wide"
-)
 
 # Step 2: Data Editing
 st.header("Validate values and you can change them if they are not right")
