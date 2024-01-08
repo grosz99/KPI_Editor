@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pygwalker as pyg
+import streamlit.components.v1 as components
 
 
 
@@ -21,8 +22,18 @@ end_date_np = np.datetime64(end_date)
 
 filtered_df = df[(df['Order Date'] >= start_date_np) & (df['Order Date'] <= end_date_np)]
 
-# Step 2: Data Validation & Editing
+# Step 2: Data Editing
 st.header("Validate values and you can change them if they are not right")
 st.data_editor(filtered_df)
 
+
+# Step 3: Data Visualization
+
+st.title("Use Pygwalker In Streamlit")
+ 
+# Generate the HTML using Pygwalker
+pyg_html = pyg.to_html(filtered_df)
+ 
+# Embed the HTML into the Streamlit app
+components.html(pyg_html, height=1000, scrolling=True)
 
